@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Seguro</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase (opcional - solo para registrar logins exitosos) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+</head>
+<body>
+  <form class="form" id="loginForm">
+    <span></span><span></span><span></span><span></span>
+    <div class="form-inner">
+      <h2>LOGIN</h2>
+      <div class="content">
+        <input id="username" class="input" type="email" placeholder="Correo electrónico" required />
+        <small class="error-msg" id="usernameError"></small>
+
+        <input id="password" class="input" type="password" placeholder="Contraseña" required />
+        <small class="error-msg" id="passwordError"></small>
+
+        <button type="submit" class="btn">INICIAR SESIÓN</button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    // ← Reemplaza con tu configuración real de Firebase (o elimínalo si no lo necesitas)
+    const firebaseConfig = {
+      apiKey: "AIzaSy...TU_API_KEY...",
+      authDomain: "f2amau.firebaseapp.com",
+      databaseURL: "https://f2amau-default-rtdb.firebaseio.com",
+      projectId: "f2amau",
+      storageBucket: "f2amau.appspot.com",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+
+    try {
+      firebase.initializeApp(firebaseConfig);
+      window.database = firebase.database();
+    } catch (e) {
+      console.warn("Firebase no configurado o no disponible");
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
