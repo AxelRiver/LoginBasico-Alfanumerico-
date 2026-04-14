@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const usernameError = document.getElementById('usernameError');
   const passwordError = document.getElementById('passwordError');
 
-  // Variables para guardar el dato sugerido
+  // Variables para guardar el dato sugerido (según actividad)
   let suggestedId = null;
   let suggestedName = null;
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setValidation(passwordInput, passwordError, validatePassword(), 'Contraseña incorrecta');
   });
 
-  // ====================== NUEVO: SUGERIDOR DE USUARIOS ======================
+  // ====================== SUGERIDOR DE USUARIOS (Actividad) ======================
   const suggestBtn = document.getElementById('suggestBtn');
   suggestBtn.addEventListener('click', async () => {
     try {
@@ -40,14 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const users = await response.json();
       const randomUser = users[Math.floor(Math.random() * users.length)];
 
-      // Insertar el nombre directamente en el input
       usernameInput.value = randomUser.name;
 
-      // Guardar dato sugerido + ID único
       suggestedName = randomUser.name;
       suggestedId = randomUser.id;
 
-      // Limpiar error y mostrar que es válido temporalmente
       setValidation(usernameInput, usernameError, true);
 
       console.log(`✅ Nombre sugerido: ${randomUser.name} (ID: ${randomUser.id})`);
@@ -72,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Éxito → registrar en Firebase (con dato sugerido + ID si se usó)
+    // Éxito → registrar en Firebase con datos sugeridos
     if (window.database) {
       const loginData = {
         username: usernameInput.value.trim(),
@@ -80,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         status: 'success'
       };
 
-      // Si se usó el sugeridor, guardamos también el nombre y el ID único
       if (suggestedId !== null) {
         loginData.suggestedName = suggestedName;
         loginData.suggestedId = suggestedId;
