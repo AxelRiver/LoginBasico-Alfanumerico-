@@ -164,3 +164,23 @@ body {
   75%  { bottom: 98%;  right: -48%; }
   100% { bottom: -48%; right: -48%; }
 }
+/* Botón Sugerir Nombre */
+.suggest-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background: #ffda05;
+  color: #0c0116;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.suggest-btn:hover {
+  background: #ffd000;
+  transform: scale(1.02);
+}
